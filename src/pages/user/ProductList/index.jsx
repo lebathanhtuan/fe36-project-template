@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Card,
   Row,
@@ -11,46 +11,67 @@ import {
   Skeleton,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AppstoreOutlined,
-  BarsOutlined,
-} from "@ant-design/icons";
+import { useNavigate, useLocation } from "react-router-dom";
+import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
+import qs from "qs";
 
 import { getProductListRequest } from "redux/slicers/product.slice";
 import { getCategoryListRequest } from "redux/slicers/category.slice";
 
+import { ROUTES } from "constants/routes";
 import { PRODUCT_LIMIT } from "constants/paging";
 import * as S from "./styles";
 
 function ProductListPage() {
+  const [filterParams, setFilterParams] = useState({
+    categoryId: [],
+    sortOrder: undefined,
+    searchKey: "",
+  });
+  const { search } = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { productList } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
 
   useEffect(() => {
-    dispatch(
-      getProductListRequest({
-        page: 1,
-        limit: PRODUCT_LIMIT,
-      })
-    );
     dispatch(getCategoryListRequest());
   }, []);
 
-  const handleFilterCategory = (values) => {
+  useEffect(() => {
+    const searchParams = qs.parse(search, { ignoreQueryPrefix: true });
+    const newFilterParams = {
+      categoryId: searchParams.categoryId
+        ? searchParams.categoryId.map((id) => parseInt(id))
+        : [],
+      sortOrder: searchParams.sortOrder,
+      searchKey: searchParams.searchKey || "",
+    };
+    setFilterParams(newFilterParams);
     dispatch(
       getProductListRequest({
         page: 1,
         limit: PRODUCT_LIMIT,
-        categoryId: values,
+        ...newFilterParams,
       })
     );
+  }, [search]);
+
+  const handleFilter = (key, value) => {
+    navigate({
+      pathname: ROUTES.USER.PRODUCT_LIST,
+      search: qs.stringify({
+        ...filterParams,
+        [key]: value,
+      }),
+    });
   };
 
   const handleShowMore = () => {
     dispatch(
       getProductListRequest({
+        ...filterParams,
         page: productList.meta.page + 1,
         limit: PRODUCT_LIMIT,
         more: true,
@@ -105,7 +126,8 @@ function ProductListPage() {
               <Skeleton active />
             ) : (
               <Checkbox.Group
-                onChange={(values) => handleFilterCategory(values)}
+                onChange={(values) => handleFilter("categoryId", values)}
+                value={filterParams.categoryId}
               >
                 <Row>{renderCategoryList}</Row>
               </Checkbox.Group>
@@ -121,14 +143,13 @@ function ProductListPage() {
                   <Select
                     placeholder="Sắp xếp theo"
                     bordered={false}
+                    onChange={(value) => handleFilter("sortOrder", value)}
+                    value={filterParams.sortOrder}
+                    allowClear
                     style={{ width: 130 }}
                   >
-                    <Select.Option value="price.asc">
-                      Giá tăng dần
-                    </Select.Option>
-                    <Select.Option value="price.desc">
-                      Giá giảm dần
-                    </Select.Option>
+                    <Select.Option value="asc">Giá tăng dần</Select.Option>
+                    <Select.Option value="desc">Giá giảm dần</Select.Option>
                   </Select>
                   <Segmented
                     options={[
