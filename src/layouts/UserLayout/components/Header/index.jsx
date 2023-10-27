@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Input } from "antd";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { SearchOutlined } from "@ant-design/icons";
 import qs from "qs";
 
 import { ROUTES } from "constants/routes";
+import { getCategoryListRequest } from "redux/slicers/category.slice";
 
 import * as S from "./styles";
 
@@ -13,6 +15,14 @@ function Header() {
 
   const { search } = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { userInfo } = useSelector((state) => state.auth);
+  const { categoryList } = useSelector((state) => state.category);
+
+  useEffect(() => {
+    dispatch(getCategoryListRequest());
+  }, []);
 
   useEffect(() => {
     const searchParams = qs.parse(search, { ignoreQueryPrefix: true });
@@ -36,6 +46,27 @@ function Header() {
     }
   };
 
+  const renderNavLink = useMemo(() => {
+    return categoryList.data.map((item) => {
+      return (
+        <Link
+          to={{
+            pathname: ROUTES.USER.PRODUCT_LIST,
+            search: qs.stringify({
+              categoryId: [item.id],
+            }),
+          }}
+          key={item.id}
+          style={{ textDecoration: "none" }}
+        >
+          <S.NavLinkItem>
+            <h4>{item.name}</h4>
+          </S.NavLinkItem>
+        </Link>
+      );
+    });
+  }, [categoryList.data]);
+
   return (
     <S.HeaderWrapper>
       <S.HeaderTopWrapper>
@@ -54,9 +85,10 @@ function Header() {
             style={{ width: 400 }}
           />
         </S.SearchContainer>
+        <h2>{userInfo.data.fullName}</h2>
       </S.HeaderTopWrapper>
       <S.HeaderBottomWrapper>
-        <S.NavLinkContainer>ABC</S.NavLinkContainer>
+        <S.NavLinkContainer>{renderNavLink}</S.NavLinkContainer>
       </S.HeaderBottomWrapper>
     </S.HeaderWrapper>
   );

@@ -1,4 +1,15 @@
 {
+  "users": [
+    {
+      "email": "tuan@gmail.com",
+      "password": "$2a$10$hJapWQwJYrIqqnC52zxX5uDT/yYFSMCDJ3rWxeiPjd25OlYo8DyIK",
+      "fullName": "Tuan Le",
+      "role": "user",
+      "createdAt": 1698323582478,
+      "updatedAt": 1698323582478,
+      "id": 1
+    }
+  ],
   "products": [
     {
       "name": "iPhone 14",
