@@ -1,11 +1,16 @@
 import { useState, useEffect, useMemo } from "react";
-import { Input } from "antd";
+import { Input, Dropdown, Button } from "antd";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  SearchOutlined,
+  LogoutOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import qs from "qs";
 
 import { ROUTES } from "constants/routes";
+import { logoutRequest } from "redux/slicers/auth.slice";
 import { getCategoryListRequest } from "redux/slicers/category.slice";
 
 import * as S from "./styles";
@@ -85,7 +90,38 @@ function Header() {
             style={{ width: 400 }}
           />
         </S.SearchContainer>
-        <h2>{userInfo.data.fullName}</h2>
+        {userInfo.data.id ? (
+          <Dropdown
+            menu={{
+              items: [
+                {
+                  key: "1",
+                  label: "Dashboard",
+                  icon: <UserOutlined />,
+                  onClick: () => navigate(ROUTES.ADMIN.DASHBOARD),
+                  style: {
+                    display: userInfo.data.role === "admin" ? "block" : "none",
+                  },
+                },
+                {
+                  key: "2",
+                  label: "Thông tin cá nhân",
+                  icon: <UserOutlined />,
+                },
+                {
+                  key: "3",
+                  label: "Đăng xuất",
+                  onClick: () => dispatch(logoutRequest()),
+                  icon: <LogoutOutlined />,
+                },
+              ],
+            }}
+          >
+            <h2>{userInfo.data.fullName}</h2>
+          </Dropdown>
+        ) : (
+          <Button onClick={() => navigate(ROUTES.LOGIN)}>Đăng nhập</Button>
+        )}
       </S.HeaderTopWrapper>
       <S.HeaderBottomWrapper>
         <S.NavLinkContainer>{renderNavLink}</S.NavLinkContainer>

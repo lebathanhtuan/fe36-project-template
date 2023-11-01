@@ -13,6 +13,8 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const accessToken = localStorage.getItem("accessToken");
+
   const { loginData } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -39,6 +41,7 @@ const LoginPage = () => {
     );
   };
 
+  if (accessToken) return <Navigate to={ROUTES.USER.HOME} />;
   return (
     <S.LoginContainer>
       <S.LoginForm>

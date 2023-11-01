@@ -11,7 +11,7 @@ import {
   Skeleton,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link, generatePath } from "react-router-dom";
 import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
 import qs from "qs";
 
@@ -93,25 +93,27 @@ function ProductListPage() {
     return productList.data.map((item) => {
       return (
         <Col key={item.id} lg={6} md={6} sm={8} xs={12}>
-          <Card
-            hoverable
-            size="small"
-            bordered={false}
-            cover={
-              <img
-                alt="example"
-                src="https://dummyimage.com/800x1000/5f9ea0/fff"
-              />
-            }
-          >
-            <span>{item.category?.name}</span>
-            <h3 truncateMultiLine={2} style={{ height: 48 }}>
-              {item.name}
-            </h3>
-            <h2 style={{ color: "#006363" }}>
-              {item.price.toLocaleString()} ₫
-            </h2>
-          </Card>
+          <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
+            <Card
+              hoverable
+              size="small"
+              bordered={false}
+              cover={
+                <img
+                  alt="example"
+                  src="https://dummyimage.com/800x1000/5f9ea0/fff"
+                />
+              }
+            >
+              <span>{item.category?.name}</span>
+              <h3 truncateMultiLine={2} style={{ height: 48 }}>
+                {item.name}
+              </h3>
+              <h2 style={{ color: "#006363" }}>
+                {item.price.toLocaleString()} ₫
+              </h2>
+            </Card>
+          </Link>
         </Col>
       );
     });

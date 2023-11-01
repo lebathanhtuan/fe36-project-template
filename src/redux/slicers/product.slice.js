@@ -7,6 +7,11 @@ const initialState = {
     loading: false,
     error: null,
   },
+  productDetail: {
+    data: {},
+    loading: false,
+    error: null,
+  },
 };
 
 export const productSlice = createSlice({
@@ -31,6 +36,21 @@ export const productSlice = createSlice({
       state.productList.loading = false;
       state.productList.error = error;
     },
+    // getProductDetail
+    getProductDetailRequest: (state, action) => {
+      state.productDetail.loading = true;
+      state.productDetail.error = null;
+    },
+    getProductDetailSuccess: (state, action) => {
+      const { data } = action.payload;
+      state.productDetail.data = data;
+      state.productDetail.loading = false;
+    },
+    getProductDetailFailure: (state, action) => {
+      const { error } = action.payload;
+      state.productDetail.loading = false;
+      state.productDetail.error = error;
+    },
   },
 });
 
@@ -38,6 +58,9 @@ export const {
   getProductListRequest,
   getProductListSuccess,
   getProductListFailure,
+  getProductDetailRequest,
+  getProductDetailSuccess,
+  getProductDetailFailure,
 } = productSlice.actions;
 
 export default productSlice.reducer;

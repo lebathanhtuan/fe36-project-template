@@ -8,6 +8,15 @@
       "createdAt": 1698323582478,
       "updatedAt": 1698323582478,
       "id": 1
+    },
+    {
+      "email": "tuanadmin@gmail.com",
+      "password": "$2a$10$S.ua2oNI4lFCKzn4QEMEBed5Hfr8grEBctlCXvAq6uJ7VSmC6b70C",
+      "fullName": "Tuan Admin",
+      "role": "admin",
+      "createdAt": 1698754297959,
+      "updatedAt": 1698754297959,
+      "id": 2
     }
   ],
   "products": [
@@ -15,42 +24,49 @@
       "name": "iPhone 14",
       "categoryId": 1,
       "price": 25000000,
+      "content": "",
       "id": 1
     },
     {
       "name": "iPhone 14 Pro",
       "categoryId": 1,
       "price": 30000000,
+      "content": "<h3 class=\"ql-align-justify\">Ngoại hình tinh tế, hiện đại</h3><p class=\"ql-align-justify\">Phong cách thiết kế hiện đại, tối giản vẫn được Apple áp dụng cho dòng sản phẩm&nbsp; <a href=\"https://www.thegioididong.com/dtdd-apple-iphone-14-series\" target=\"_blank\" style=\"color: rgb(47, 128, 237);\">iPhone 14</a>&nbsp;năm nay, máy có cạnh viền vát phẳng tạo sự trẻ trung và hiện đại, đi cùng cụm ba camera bố trí một cách hoàn hảo để tạo điểm nhấn mới.</p><p class=\"ql-align-justify\"> <br></p><p class=\"ql-align-justify\"> <a href=\"https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-256gb-080922-092528.jpg\" target=\"_blank\" style=\"font-size: 18px; color: rgb(47, 128, 237);\"> <img src=\"https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-256gb-080922-092528.jpg\" alt=\"Thiết kế ấn tượng - iPhone 14 Pro 256GB\"> </a></p><p class=\"ql-align-justify\"> <br></p><p class=\"ql-align-justify\"> <span style=\"font-size: 18px;\">Đặc biệt tai thỏ ở các thế hệ trước như&nbsp;</span> <a href=\"https://www.thegioididong.com/dtdd-apple-iphone-13-series\" target=\"_blank\" style=\"color: rgb(47, 128, 237);\">iPhone 13 series</a>&nbsp;đã được thay thế bằng hình viên thuốc trên màn hình, không những tăng sự tinh tế về mặt ngoại hình mà còn gia tăng không gian hiển thị, cung cấp cho người dùng cái nhìn liền mạch hơn.</p><p class=\"ql-align-justify\"> <br></p><h3 class=\"ql-align-justify\">Sắc nét đến từng chi tiết</h3><p class=\"ql-align-justify\"> <a href=\"https://www.thegioididong.com/dtdd/iphone-14-pro\" target=\"_blank\" style=\"color: rgb(47, 128, 237);\">iPhone 14 Pro</a>&nbsp;sở hữu màn hình OLED kích thước 6.1 inch với độ phân giải 2556 x 1179 Pixels cho khả năng hiển thị siêu sắc nét đến từng chi tiết, màu sắc sống động, nâng cao trải nghiệm thị giác của người dùng.</p><p class=\"ql-align-justify\">Tuy nhiên với nhu cầu sử dụng màn hình lớn hơn thì người dùng có thể tham khảo thêm phiên bản&nbsp; <a href=\"https://www.thegioididong.com/dtdd/iphone-14-pro-max\" target=\"_blank\" style=\"color: rgb(47, 128, 237);\">iPhone 14 Pro Max</a>.</p><p class=\"ql-align-justify\"> <br></p><p class=\"ql-align-justify\"> <a href=\"https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-256gb-080922-092535.jpg\" target=\"_blank\" style=\"font-size: 18px; color: rgb(47, 128, 237);\"> <img src=\"https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-256gb-080922-092535.jpg\" alt=\"Màn hình chất lượng - iPhone 14 Pro 256GB\"> </a></p><p class=\"ql-align-justify\"> <br></p><p class=\"ql-align-justify\"> <span style=\"font-size: 18px;\">Màn hình đục lỗ được thiết kế theo hình viên thuốc độc đáo, tạo một không gian hiển thị mới, hạn chế che khuất khung hình để người dùng có được trải nghiệm trọn vẹn nội dung trên màn hình&nbsp;</span> <a href=\"https://www.thegioididong.com/dtdd\" target=\"_blank\" style=\"color: rgb(47, 128, 237);\">điện thoại</a>.</p><p class=\"ql-align-justify\"> <br></p><p class=\"ql-align-justify\"> <a href=\"https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-256gb-080922-092540.jpg\" target=\"_blank\" style=\"font-size: 18px; color: rgb(47, 128, 237);\"> <img src=\"https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-256gb-080922-092540.jpg\" alt=\"Thiết kế hình notch mới - iPhone 14 Pro 256GB\"> </a></p><p class=\"ql-align-justify\"> <br></p><p class=\"ql-align-justify\"> <span style=\"font-size: 18px;\">Tần số quét 120 Hz cho mọi thao tác chuyển cảnh khi chạm, lướt trên màn hình trở nên siêu mượt mà, đồng thời làm tăng cảm nhận thị giác khi sử dụng, chơi game hoặc xem video siêu đã.</span></p><p class=\"ql-align-justify\"> <br></p><h3 class=\"ql-align-justify\">Camera quay video siêu sắc nét</h3><p class=\"ql-align-justify\">Apple đã nâng cấp mạnh camera trên iPhone 14 Pro, cảm biến chính được cải tiến và nâng độ phân giải lên tới 48 MP để cung cấp khả năng chụp ảnh đỉnh cao, hỗ trợ người dùng quay video độ phân giải 4K siêu sắc nét.</p><p class=\"ql-align-justify\"> <br></p><p class=\"ql-align-justify\"> <a href=\"https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-256gb-080922-092536.jpg\" target=\"_blank\" style=\"font-size: 18px; color: rgb(47, 128, 237);\"> <img src=\"https://cdn.tgdd.vn/Products/Images/42/289691/iphone-14-pro-256gb-080922-092536.jpg\" alt=\"Nâng cấp trên camera - iPhone 14 Pro 256GB\"> </a></p><p class=\"ql-align-justify\"> <br></p><p class=\"ql-align-justify\"> <span style=\"font-size: 18px;\">Khả năng chụp ảnh góc siêu rộng trên&nbsp;</span> <a href=\"https://www.thegioididong.com/dtdd-apple-iphone\" target=\"_blank\" style=\"color: rgb(47, 128, 237);\">điện thoại iPhone</a>&nbsp;cũng được cải tiến nhờ camera độ phân giải 12 MP kết hợp với các thuật toán mới mang đến những bức ảnh góc rộng tự nhiên, chân thực.</p><ul> <li> <br></li></ul>",
       "id": 2
     },
     {
       "name": "Samsung Note 20",
       "categoryId": 2,
       "price": 15000000,
+      "content": "",
       "id": 3
     },
     {
       "name": "Samsung Note 20 Ahihi Ahihi",
       "categoryId": 2,
       "price": 15000000,
+      "content": "",
       "id": 4
     },
     {
       "name": "Xiaomi Mi 13",
       "categoryId": 3,
       "price": 20000000,
+      "content": "",
       "id": 5
     },
     {
       "name": "Samsung Note 21",
       "categoryId": 2,
       "price": 15000000,
+      "content": "",
       "id": 6
     },
     {
       "name": "Xiaomi Mi 14",
       "categoryId": 3,
       "price": 20000000,
+      "content": "",
       "id": 7
     }
   ],

@@ -5,6 +5,9 @@ import {
   getProductListRequest,
   getProductListSuccess,
   getProductListFailure,
+  getProductDetailRequest,
+  getProductDetailSuccess,
+  getProductDetailFailure,
 } from "redux/slicers/product.slice";
 
 function* getProductListSaga(action) {
@@ -40,6 +43,21 @@ function* getProductListSaga(action) {
   }
 }
 
+function* getProductDetailSaga(action) {
+  try {
+    const { id } = action.payload;
+    const result = yield axios.get(`http://localhost:4000/products/${id}`, {
+      params: {
+        _expand: "category",
+      },
+    });
+    yield put(getProductDetailSuccess({ data: result.data }));
+  } catch (e) {
+    yield put(getProductDetailFailure({ error: "Lỗi" }));
+  }
+}
+
 export default function* productSaga() {
   yield takeEvery(getProductListRequest, getProductListSaga);
+  yield takeEvery(getProductDetailRequest, getProductDetailSaga);
 }

@@ -6,9 +6,13 @@ import { useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
 
 import UserLayout from "layouts/UserLayout";
+import AdminLayout from "layouts/AdminLayout";
 
 import HomePage from "pages/user/Home";
 import ProductListPage from "pages/user/ProductList";
+import ProductDetailPage from "pages/user/ProductDetail";
+
+import DashboardPage from "pages/admin/Dashboard";
 
 import LoginPage from "pages/Login";
 import RegisterPage from "pages/Register";
@@ -49,6 +53,13 @@ function App() {
             path={ROUTES.USER.PRODUCT_LIST}
             element={<ProductListPage />}
           />
+          <Route
+            path={ROUTES.USER.PRODUCT_DETAIL}
+            element={<ProductDetailPage />}
+          />
+        </Route>
+        <Route element={<AdminLayout />}>
+          <Route path={ROUTES.ADMIN.DASHBOARD} element={<DashboardPage />} />
         </Route>
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
