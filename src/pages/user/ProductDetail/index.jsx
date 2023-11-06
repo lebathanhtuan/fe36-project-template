@@ -25,6 +25,10 @@ import qs from "qs";
 
 import { ROUTES } from "constants/routes";
 import { getProductDetailRequest } from "redux/slicers/product.slice";
+import {
+  getReviewListRequest,
+  reviewProductRequest,
+} from "redux/slicers/review.slice";
 
 import * as S from "./styles";
 
@@ -36,84 +40,114 @@ const ProductDetailPage = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
   const { productDetail } = useSelector((state) => state.product);
+  const { reviewList } = useSelector((state) => state.review);
+
+  const averageRate = useMemo(
+    () =>
+      reviewList.data.length
+        ? (
+            reviewList.data.reduce((total, item) => total + item.rate, 0) /
+            reviewList.data.length
+          ).toFixed(1)
+        : 0,
+    [reviewList.data]
+  );
 
   useEffect(() => {
     dispatch(getProductDetailRequest({ id: parseInt(id) }));
+    dispatch(getReviewListRequest({ productId: parseInt(id) }));
   }, []);
 
   const handleAddToCart = () => {};
 
   const handleToggleFavorite = () => {};
 
-  const handleReviewProduct = (values) => {};
+  const handleReviewProduct = (values) => {
+    dispatch(
+      reviewProductRequest({
+        data: {
+          ...values,
+          userId: userInfo.data.id,
+          productId: parseInt(id),
+        },
+      })
+    );
+  };
 
-  // const renderReviewForm = useMemo(() => {
-  //   if (userInfo.data.id) {
-  //     const isReviewed = reviewList.data.some(
-  //       (item) => item.userId === userInfo.data.id
-  //     );
-  //     if (isReviewed) {
-  //       return (
-  //         <S.ReviewFormWrapper>
-  //           Bạn đã đánh giá sản phẩm này
-  //         </S.ReviewFormWrapper>
-  //       );
-  //     }
-  //     return (
-  //       <S.ReviewFormWrapper>
-  //         <Form
-  //           form={reviewForm}
-  //           name="loginForm"
-  //           layout="vertical"
-  //           initialValues={{
-  //             rate: 0,
-  //             comment: "",
-  //           }}
-  //           onFinish={(values) => handleReviewProduct(values)}
-  //         >
-  //           <Form.Item
-  //             label="Đánh giá sao"
-  //             name="rate"
-  //             rules={[{ required: true, message: "Đánh giá sao là bắt buộc" }]}
-  //           >
-  //             <Rate />
-  //           </Form.Item>
+  const renderReviewForm = useMemo(() => {
+    if (userInfo.data.id) {
+      const isReviewed = reviewList.data.some(
+        (item) => item.userId === userInfo.data.id
+      );
+      if (isReviewed) {
+        return (
+          <S.ReviewFormWrapper>
+            Bạn đã đánh giá sản phẩm này
+          </S.ReviewFormWrapper>
+        );
+      }
+      return (
+        <S.ReviewFormWrapper>
+          <Form
+            form={reviewForm}
+            name="loginForm"
+            layout="vertical"
+            initialValues={{
+              rate: 0,
+              comment: "",
+            }}
+            onFinish={(values) => handleReviewProduct(values)}
+          >
+            <Form.Item
+              label="Đánh giá sao"
+              name="rate"
+              rules={[
+                { required: true, message: "Nhận xét là bắt buộc" },
+                {
+                  min: 1,
+                  type: "number",
+                  message: "Đánh giá sao là bắt buộc",
+                },
+              ]}
+            >
+              <Rate />
+            </Form.Item>
 
-  //           <Form.Item
-  //             label="Nhận xét"
-  //             name="comment"
-  //             rules={[{ required: true, message: "Nhận xét là bắt buộc" }]}
-  //           >
-  //             <Input.TextArea />
-  //           </Form.Item>
-  //           <Button type="primary" htmlType="submit" block>
-  //             Gửi
-  //           </Button>
-  //         </Form>
-  //       </S.ReviewFormWrapper>
-  //     );
-  //   }
-  //   return <S.ReviewFormWrapper>Bạn chưa đăng nhập</S.ReviewFormWrapper>;
-  // }, [userInfo.data, reviewList.data]);
+            <Form.Item
+              label="Nhận xét"
+              name="comment"
+              rules={[{ required: true, message: "Nhận xét là bắt buộc" }]}
+            >
+              <Input.TextArea />
+            </Form.Item>
+            <Button type="primary" htmlType="submit" block>
+              Gửi
+            </Button>
+          </Form>
+        </S.ReviewFormWrapper>
+      );
+    }
+    return <S.ReviewFormWrapper>Bạn chưa đăng nhập</S.ReviewFormWrapper>;
+  }, [userInfo.data, reviewList.data]);
 
-  // const renderReviewList = useMemo(() => {
-  //   return reviewList.data.map((item) => {
-  //     return (
-  //       <S.ReviewItemWrapper key={item.id}>
-  //         <Space>
-  //           <h3>{item.user.fullName}</h3>
-  //           <p>{dayjs(item.createdAt).fromNow()}</p>
-  //         </Space>
-  //         <Rate
-  //           value={item.rate}
-  //           disabled
-  //           style={{ display: "block", fontSize: 12 }}
-  //         />
-  //         <p>{item.comment}</p>
-  //       </S.ReviewItemWrapper>
-  //     );
-  //   });
-  // }, [reviewList.data]);
+  const renderReviewList = useMemo(() => {
+    return reviewList.data.map((item) => {
+      return (
+        <S.ReviewItemWrapper key={item.id}>
+          <Space>
+            <h3>{item.user.fullName}</h3>
+            <p>{dayjs(item.createdAt).fromNow()}</p>
+          </Space>
+          <Rate
+            value={item.rate}
+            disabled
+            style={{ display: "block", fontSize: 12 }}
+          />
+          <p>{item.comment}</p>
+        </S.ReviewItemWrapper>
+      );
+    });
+  }, [reviewList.data]);
 
   return (
     <S.ProductDetailWrapper>
@@ -131,7 +165,10 @@ const ProductDetailPage = () => {
             <p size="sm">{productDetail.data.category?.name}</p>
             <h1>{productDetail.data.name}</h1>
             <Space align="baseline" style={{ marginBottom: 8 }}>
-              <Rate value={5} allowHalf disabled />
+              <Rate value={averageRate} allowHalf disabled />
+              <span>{`(${
+                averageRate ? averageRate : "Chưa có đánh giá"
+              })`}</span>
             </Space>
             <h3 style={{ color: "#006363" }}>
               {productDetail.data.price?.toLocaleString()} ₫
@@ -186,7 +223,8 @@ const ProductDetailPage = () => {
             bordered={false}
             style={{ marginTop: 16 }}
           >
-            Đánh giá sản phẩm
+            {renderReviewForm}
+            {renderReviewList}
           </Card>
         </Col>
         <Col xs={24} md={8}>

@@ -11,6 +11,7 @@ import AdminLayout from "layouts/AdminLayout";
 import HomePage from "pages/user/Home";
 import ProductListPage from "pages/user/ProductList";
 import ProductDetailPage from "pages/user/ProductDetail";
+import CartPage from "pages/user/Cart";
 
 import DashboardPage from "pages/admin/Dashboard";
 
@@ -57,6 +58,7 @@ function App() {
             path={ROUTES.USER.PRODUCT_DETAIL}
             element={<ProductDetailPage />}
           />
+          <Route path={ROUTES.USER.CART} element={<CartPage />} />
         </Route>
         <Route element={<AdminLayout />}>
           <Route path={ROUTES.ADMIN.DASHBOARD} element={<DashboardPage />} />

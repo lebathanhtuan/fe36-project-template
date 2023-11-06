@@ -83,5 +83,52 @@
       "id": 3,
       "name": "Xiaomi"
     }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "comment": "Good",
+      "rate": 5,
+      "userId": 1,
+      "productId": 2,
+      "createdAt": 1698323582478,
+      "updatedAt": 1698323582478
+    },
+    {
+      "rate": 4,
+      "comment": "Tạm ổn",
+      "userId": 1,
+      "productId": 2,
+      "createdAt": 1699100052020,
+      "updatedAt": 1699100052021,
+      "id": 2
+    },
+    {
+      "rate": 3,
+      "comment": "Ahihi",
+      "userId": 1,
+      "productId": 2,
+      "createdAt": 1699100275660,
+      "updatedAt": 1699100275660,
+      "id": 3
+    },
+    {
+      "rate": 5,
+      "comment": "ok",
+      "userId": 1,
+      "productId": 2,
+      "createdAt": 1699100353603,
+      "updatedAt": 1699100353603,
+      "id": 4
+    },
+    {
+      "rate": 5,
+      "comment": "ok ok",
+      "userId": 1,
+      "productId": 4,
+      "createdAt": 1699100518075,
+      "updatedAt": 1699100518075,
+      "id": 5
+    }
   ]
 }
