@@ -25,6 +25,7 @@ function Header() {
 
   const { userInfo } = useSelector((state) => state.auth);
   const { categoryList } = useSelector((state) => state.category);
+  const { cartList } = useSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(getCategoryListRequest());
@@ -92,7 +93,7 @@ function Header() {
           />
         </S.SearchContainer>
         <Space size={24}>
-          <Badge count={0}>
+          <Badge count={cartList.length}>
             <Link to={ROUTES.USER.CART}>
               <ShoppingCartOutlined
                 style={{ fontSize: 24, color: "#414141" }}

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   Table,
   Button,
@@ -13,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { HomeOutlined } from "@ant-design/icons";
 
 import { ROUTES } from "constants/routes";
+import { updateCartRequest, deleteCartRequest } from "redux/slicers/cart.slice";
 
 import * as S from "./styles";
 
@@ -20,9 +22,30 @@ function CartPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleChangeQuantity = (productId, value) => {};
+  const { cartList } = useSelector((state) => state.cart);
 
-  const handleDeleteCartItem = (productId) => {};
+  const totalPrice = useMemo(
+    () =>
+      cartList.reduce((total, item) => total + item.price * item.quantity, 0),
+    [cartList]
+  );
+
+  const handleChangeQuantity = (productId, value) => {
+    dispatch(
+      updateCartRequest({
+        productId,
+        quantity: value,
+      })
+    );
+  };
+
+  const handleDeleteCartItem = (productId) => {
+    dispatch(
+      deleteCartRequest({
+        productId,
+      })
+    );
+  };
 
   const tableColumn = [
     {
@@ -92,22 +115,22 @@ function CartPage() {
       <Card size="small">
         <Table
           columns={tableColumn}
-          dataSource={[]}
-          rowKey="id"
+          dataSource={cartList}
+          rowKey="productId"
           pagination={false}
         />
       </Card>
       <Row justify="end" style={{ margin: "24px 0" }}>
         <Col span={8}>
           <Card size="small" title="Tổng tiền">
-            0 VND
+            {totalPrice.toLocaleString()} VND
           </Card>
         </Col>
       </Row>
       <Row justify="end">
         <Button
           type="primary"
-          disabled
+          disabled={!cartList.length}
           onClick={() => navigate(ROUTES.USER.CHECKOUT)}
         >
           Tiếp theo

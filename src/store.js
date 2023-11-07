@@ -5,6 +5,8 @@ import authReducer from "redux/slicers/auth.slice";
 import productReducer from "redux/slicers/product.slice";
 import categoryReducer from "redux/slicers/category.slice";
 import reviewReducer from "redux/slicers/review.slice";
+import cartReducer from "redux/slicers/cart.slice";
+import locationReducer from "redux/slicers/location.slice";
 import commonReducer from "redux/slicers/common.slice";
 
 import rootSaga from "redux/sagas";
@@ -17,6 +19,8 @@ const store = configureStore({
     product: productReducer,
     category: categoryReducer,
     review: reviewReducer,
+    cart: cartReducer,
+    location: locationReducer,
     common: commonReducer,
   },
   middleware: (getDefaultMiddleware) => [

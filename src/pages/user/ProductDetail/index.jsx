@@ -29,6 +29,7 @@ import {
   getReviewListRequest,
   reviewProductRequest,
 } from "redux/slicers/review.slice";
+import { addToCartRequest } from "redux/slicers/cart.slice";
 
 import * as S from "./styles";
 
@@ -58,7 +59,19 @@ const ProductDetailPage = () => {
     dispatch(getReviewListRequest({ productId: parseInt(id) }));
   }, []);
 
-  const handleAddToCart = () => {};
+  const handleAddToCart = () => {
+    dispatch(
+      addToCartRequest({
+        data: {
+          productId: productDetail.data.id,
+          name: productDetail.data.name,
+          price: productDetail.data.price,
+          quantity: quantity,
+        },
+      })
+    );
+    notification.success({ message: "Thêm vào giỏ thành công" });
+  };
 
   const handleToggleFavorite = () => {};
 
