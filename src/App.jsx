@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
@@ -7,12 +7,15 @@ import jwtDecode from "jwt-decode";
 
 import UserLayout from "layouts/UserLayout";
 import AdminLayout from "layouts/AdminLayout";
+import ProfileLayout from "layouts/ProfileLayout";
 
 import HomePage from "pages/user/Home";
 import ProductListPage from "pages/user/ProductList";
 import ProductDetailPage from "pages/user/ProductDetail";
 import CartPage from "pages/user/Cart";
 import CheckoutPage from "pages/user/Checkout";
+import UserInfoPage from "pages/user/UserInfo";
+import OrderHistoryPage from "pages/user/OrderHistory";
 
 import DashboardPage from "pages/admin/Dashboard";
 
@@ -61,6 +64,17 @@ function App() {
           />
           <Route path={ROUTES.USER.CART} element={<CartPage />} />
           <Route path={ROUTES.USER.CHECKOUT} element={<CheckoutPage />} />
+          <Route element={<ProfileLayout />}>
+            <Route
+              path={ROUTES.USER.PROFILE}
+              element={<Navigate to={ROUTES.USER.USER_INFO} />}
+            />
+            <Route path={ROUTES.USER.USER_INFO} element={<UserInfoPage />} />
+            <Route
+              path={ROUTES.USER.ORDER_HISTORY}
+              element={<OrderHistoryPage />}
+            />
+          </Route>
         </Route>
         <Route element={<AdminLayout />}>
           <Route path={ROUTES.ADMIN.DASHBOARD} element={<DashboardPage />} />

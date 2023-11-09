@@ -118,6 +118,7 @@ function Header() {
                     key: "2",
                     label: "Thông tin cá nhân",
                     icon: <UserOutlined />,
+                    onClick: () => navigate(ROUTES.USER.PROFILE),
                   },
                   {
                     key: "3",

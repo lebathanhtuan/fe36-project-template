@@ -17,11 +17,13 @@ import {
 import { HomeOutlined } from "@ant-design/icons";
 
 import { ROUTES } from "constants/routes";
+import { GUEST_ID } from "constants/guest";
 import {
   getCityListRequest,
   getDistrictListRequest,
   getWardListRequest,
 } from "redux/slicers/location.slice";
+import { orderProductRequest } from "redux/slicers/order.slice";
 
 import * as S from "./styles";
 
@@ -71,7 +73,32 @@ function CheckoutPage() {
     },
   ];
 
-  const handleSubmitCheckoutForm = (values) => {};
+  const handleSubmitCheckoutForm = (values) => {
+    const { cityCode, districtCode, wardCode } = values;
+    const cityData = cityList.data.find((item) => item.code === cityCode);
+    const districtData = districtList.data.find(
+      (item) => item.code === districtCode
+    );
+    const wardData = wardList.data.find((item) => item.code === wardCode);
+    const totalPrice = cartList.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    dispatch(
+      orderProductRequest({
+        orderData: {
+          ...values,
+          cityName: cityData?.name,
+          districtName: districtData?.name,
+          wardName: wardData?.name,
+          totalPrice: totalPrice,
+          userId: userInfo.data.id || GUEST_ID,
+        },
+        cartList: cartList,
+        callback: () => navigate(ROUTES.USER.HOME),
+      })
+    );
+  };
 
   const renderCityOptions = useMemo(() => {
     return cityList.data.map((item) => {

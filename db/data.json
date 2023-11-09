@@ -17,6 +17,15 @@
       "createdAt": 1698754297959,
       "updatedAt": 1698754297959,
       "id": 2
+    },
+    {
+      "email": "guest@gmail.com",
+      "password": "$2a$10$MSVlMUZUdC2qbBXHz49mieO4fakknUpZkmuW7/410Pt/kEHr4MDxW",
+      "fullName": "Khách hàng",
+      "role": "user",
+      "createdAt": 1699530424843,
+      "updatedAt": 1699530424843,
+      "id": 3
     }
   ],
   "products": [
@@ -129,6 +138,86 @@
       "createdAt": 1699100518075,
       "updatedAt": 1699100518075,
       "id": 5
+    }
+  ],
+  "orders": [
+    {
+      "fullName": "Thanh Tuan",
+      "email": "tuan@gmail.com",
+      "phoneNumber": "123456789",
+      "cityCode": "92",
+      "districtCode": "923",
+      "wardCode": "31210",
+      "address": "123 ABC",
+      "paymentMethod": "cod",
+      "cityName": "Thành phố Cần Thơ",
+      "districtName": "Quận Thốt Nốt",
+      "wardName": "Phường Thới Thuận",
+      "totalPrice": 45000000,
+      "userId": 1,
+      "createdAt": 1699531262942,
+      "updatedAt": 1699531262942,
+      "id": 1
+    },
+    {
+      "fullName": "Thanh Tuan",
+      "email": "tuan@gmail.com",
+      "phoneNumber": "123456789",
+      "cityCode": "31",
+      "districtCode": "307",
+      "wardCode": "11449",
+      "address": "123 ABC",
+      "paymentMethod": "cod",
+      "cityName": "Thành phố Hải Phòng",
+      "districtName": "Quận Kiến An",
+      "wardName": "Phường Phù Liễn",
+      "totalPrice": 45000000,
+      "userId": 1,
+      "createdAt": 1699531563141,
+      "updatedAt": 1699531563141,
+      "id": 2
+    }
+  ],
+  "orderDetails": [
+    {
+      "productId": 2,
+      "name": "iPhone 14 Pro",
+      "price": 30000000,
+      "quantity": 1,
+      "orderId": 1,
+      "createdAt": 1699531264507,
+      "updatedAt": 1699531264507,
+      "id": 1
+    },
+    {
+      "productId": 4,
+      "name": "Samsung Note 20 Ahihi Ahihi",
+      "price": 15000000,
+      "quantity": 1,
+      "orderId": 1,
+      "createdAt": 1699531266573,
+      "updatedAt": 1699531266573,
+      "id": 2
+    },
+    {
+      "productId": 7,
+      "name": "Xiaomi Mi 14",
+      "price": 20000000,
+      "quantity": 1,
+      "orderId": 2,
+      "createdAt": 1699531563248,
+      "updatedAt": 1699531563248,
+      "id": 3
+    },
+    {
+      "productId": 1,
+      "name": "iPhone 14",
+      "price": 25000000,
+      "quantity": 1,
+      "orderId": 2,
+      "createdAt": 1699531563353,
+      "updatedAt": 1699531563353,
+      "id": 4
     }
   ],
   "cities": [
