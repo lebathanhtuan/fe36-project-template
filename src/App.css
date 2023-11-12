@@ -6,6 +6,113 @@
   height: 40vmin;
   pointer-events: none;
 }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  width: 100%;
+  height: 56px;
+  background-color: darkcyan;
+  z-index: 99;
+}
+
+.header-logo {
+  display: flex;
+}
+.header-logo > h3 {
+  display: none;
+  margin-right: 16px;
+}
+.main {
+  flex: 1;
+  margin-top: 56px;
+  margin-left: 250px;
+  padding: 16px;
+  transition: all 0.4s;
+}
+.main.full {
+  margin-left: 0;
+}
+.footer {
+  padding: 24px;
+  text-align: center;
+  background-color: cadetblue;
+}
+
+.nav-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+.nav-link-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  height: 100%;
+}
+.nav-link-item:hover {
+  background-color: red;
+  transition: all 1s;
+}
+.sub-nav {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  display: none;
+  width: 150px;
+  background-color: red;
+  z-index: 1;
+}
+.nav-link-item:hover .sub-nav {
+  display: block;
+}
+.sub-nav-item {
+  padding: 8px;
+}
+.sub-nav-item:hover {
+  background-color: yellow;
+}
+.product-item {
+  padding: 16px;
+  width: 200px;
+  height: 300px;
+  background-color: #61dafb;
+  border: 1px solid red;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex: 1;
+}
+.sidebar {
+  position: absolute;
+  left: -250px;
+  margin-top: 56px;
+  padding: 16px;
+  width: 250px;
+  height: calc(100% - 56px);
+  background-color: #14bbbb;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.sidebar.show {
+  left: 0;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

@@ -16,6 +16,7 @@ server.use((req, res, next) => {
   if (req.method === "POST") {
     req.body.createdAt = dayjs().valueOf();
     req.body.updatedAt = dayjs().valueOf();
+    req.body.isDelete = false;
   }
 
   if (req.method === "PUT") {

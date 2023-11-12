@@ -150,8 +150,12 @@ function ProductListPage() {
                     allowClear
                     style={{ width: 130 }}
                   >
-                    <Select.Option value="asc">Giá tăng dần</Select.Option>
-                    <Select.Option value="desc">Giá giảm dần</Select.Option>
+                    <Select.Option value="price.asc">
+                      Giá tăng dần
+                    </Select.Option>
+                    <Select.Option value="price.desc">
+                      Giá giảm dần
+                    </Select.Option>
                   </Select>
                   <Segmented
                     options={[

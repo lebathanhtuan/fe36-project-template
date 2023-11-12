@@ -18,6 +18,8 @@ import UserInfoPage from "pages/user/UserInfo";
 import OrderHistoryPage from "pages/user/OrderHistory";
 
 import DashboardPage from "pages/admin/Dashboard";
+import ProductManagerPage from "pages/admin/ProductManager";
+import CreateProductPage from "pages/admin/CreateProduct";
 
 import LoginPage from "pages/Login";
 import RegisterPage from "pages/Register";
@@ -25,6 +27,7 @@ import RegisterPage from "pages/Register";
 import { ROUTES } from "constants/routes";
 import { getUserInfoRequest } from "redux/slicers/auth.slice";
 import { light, dark } from "themes";
+import "App.css";
 
 function App() {
   const { pathname } = useLocation();
@@ -78,6 +81,14 @@ function App() {
         </Route>
         <Route element={<AdminLayout />}>
           <Route path={ROUTES.ADMIN.DASHBOARD} element={<DashboardPage />} />
+          <Route
+            path={ROUTES.ADMIN.PRODUCT_MANAGER}
+            element={<ProductManagerPage />}
+          />
+          <Route
+            path={ROUTES.ADMIN.CREATE_PRODUCT}
+            element={<CreateProductPage />}
+          />
         </Route>
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.REGISTER} element={<RegisterPage />} />

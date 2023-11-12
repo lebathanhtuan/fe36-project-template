@@ -14,6 +14,9 @@ export const ROUTES = {
   },
   ADMIN: {
     DASHBOARD: "/admin/dashboard",
+    PRODUCT_MANAGER: "/admin/products",
+    CREATE_PRODUCT: "/admin/products/create",
+    UPDATE_PRODUCT: "/admin/products/:id/update",
   },
   LOGIN: "/login",
   REGISTER: "/register",

@@ -11,6 +11,7 @@ import App from "./App";
 import { store } from "./store";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import "react-quill/dist/quill.snow.css";
 
 dayjs.locale("vi");
 dayjs.extend(relativeTime);

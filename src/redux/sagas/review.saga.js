@@ -19,6 +19,7 @@ function* getReviewListSaga(action) {
         _sort: "createdAt",
         _order: "desc",
         productId: productId,
+        isDelete: false,
       },
     });
     yield put(getReviewListSuccess({ data: result.data }));

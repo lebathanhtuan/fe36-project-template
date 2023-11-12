@@ -19,6 +19,7 @@ function* getOrderListSaga(action) {
       params: {
         _embed: "orderDetails",
         userId: userId,
+        isDelete: false,
       },
     });
     yield put(getOrderListSuccess({ data: result.data }));
