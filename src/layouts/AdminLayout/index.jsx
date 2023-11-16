@@ -15,6 +15,18 @@ function AdminLayout() {
   const { userInfo } = useSelector((state) => state.auth);
 
   const accessToken = localStorage.getItem("accessToken");
+  console.log(
+    "🚀 ~ file: index.jsx:18 ~ AdminLayout ~ accessToken:",
+    accessToken
+  );
+  console.log(
+    "🚀 ~ file: index.jsx:18 ~ AdminLayout ~ userInfo.loading:",
+    userInfo.loading
+  );
+  console.log(
+    "🚀 ~ file: index.jsx:18 ~ AdminLayout ~ userInfo.data.role:",
+    userInfo.data.role
+  );
 
   if (accessToken && userInfo.loading) {
     return <div>Loading...</div>;

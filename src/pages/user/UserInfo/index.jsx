@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Input, DatePicker } from "antd";
 import dayjs from "dayjs";
 
+import { updateUserInfoRequest } from "redux/slicers/auth.slice";
+
 function UserInfo() {
   const [updateUserInfoForm] = Form.useForm();
 
@@ -18,11 +20,21 @@ function UserInfo() {
 
   useEffect(() => {
     if (userInfo.data.id) {
-      updateUserInfoForm.resetFields();
+      updateUserInfoForm.setFieldsValue(initialValues);
     }
   }, [userInfo.data]);
 
-  const handleUpdateUserInfo = (values) => {};
+  const handleUpdateUserInfo = (values) => {
+    dispatch(
+      updateUserInfoRequest({
+        id: userInfo.data.id,
+        data: {
+          ...values,
+          birthday: dayjs(values.birthday).valueOf(),
+        },
+      })
+    );
+  };
 
   return (
     <Form
@@ -76,7 +88,12 @@ function UserInfo() {
       >
         <DatePicker placeholder="Chọn ngày" />
       </Form.Item>
-      <Button type="primary" htmlType="submit" block>
+      <Button
+        type="primary"
+        htmlType="submit"
+        block
+        loading={updateUserInfoData.loading}
+      >
         Cập nhật
       </Button>
     </Form>

@@ -16,6 +16,7 @@ import CartPage from "pages/user/Cart";
 import CheckoutPage from "pages/user/Checkout";
 import UserInfoPage from "pages/user/UserInfo";
 import OrderHistoryPage from "pages/user/OrderHistory";
+import ChangePasswordPage from "pages/user/ChangePassword";
 
 import DashboardPage from "pages/admin/Dashboard";
 import ProductManagerPage from "pages/admin/ProductManager";
@@ -76,6 +77,10 @@ function App() {
             <Route
               path={ROUTES.USER.ORDER_HISTORY}
               element={<OrderHistoryPage />}
+            />
+            <Route
+              path={ROUTES.USER.CHANGE_PASSWORD}
+              element={<ChangePasswordPage />}
             />
           </Route>
         </Route>

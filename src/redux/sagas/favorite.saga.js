@@ -41,10 +41,11 @@ function* getFavoriteListSaga(action) {
 
 function* favoriteProductSaga(action) {
   try {
-    const result = yield axios.post(
-      "http://localhost:4000/favorites",
-      action.payload
-    );
+    const { userId, productId } = action.payload;
+    const result = yield axios.post("http://localhost:4000/favorites", {
+      userId,
+      productId,
+    });
     yield put(favoriteProductSuccess({ data: result.data }));
   } catch (e) {
     yield put(favoriteProductFailure({ error: "Lỗi" }));

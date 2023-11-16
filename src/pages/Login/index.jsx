@@ -13,9 +13,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const accessToken = localStorage.getItem("accessToken");
-
-  const { loginData } = useSelector((state) => state.auth);
+  const { loginData, userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (loginData.error) {
@@ -32,16 +30,24 @@ const LoginPage = () => {
     }
   }, [loginData.error]);
 
+  useEffect(() => {
+    if (userInfo.data.id) {
+      navigate(ROUTES.USER.HOME);
+    }
+  }, [userInfo.data]);
+
   const handleSubmit = (values) => {
     dispatch(
       loginRequest({
         data: values,
-        callback: () => navigate(ROUTES.USER.HOME),
+        callback: (role) => {
+          if (role === "admin") return navigate(ROUTES.ADMIN.DASHBOARD);
+          return navigate(ROUTES.USER.HOME);
+        },
       })
     );
   };
 
-  if (accessToken) return <Navigate to={ROUTES.USER.HOME} />;
   return (
     <S.LoginContainer>
       <S.LoginForm>

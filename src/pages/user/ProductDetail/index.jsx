@@ -30,6 +30,10 @@ import {
   reviewProductRequest,
 } from "redux/slicers/review.slice";
 import { addToCartRequest } from "redux/slicers/cart.slice";
+import {
+  favoriteProductRequest,
+  unFavoriteProductRequest,
+} from "redux/slicers/favorite.slice";
 
 import * as S from "./styles";
 
@@ -54,6 +58,16 @@ const ProductDetailPage = () => {
     [reviewList.data]
   );
 
+  const isFavorite = useMemo(
+    () =>
+      productDetail.data.favorites
+        ? productDetail.data.favorites.some(
+            (item) => item.userId === userInfo.data.id
+          )
+        : false,
+    [productDetail.data, userInfo.data]
+  );
+
   useEffect(() => {
     dispatch(getProductDetailRequest({ id: parseInt(id) }));
     dispatch(getReviewListRequest({ productId: parseInt(id) }));
@@ -73,7 +87,27 @@ const ProductDetailPage = () => {
     notification.success({ message: "Thêm vào giỏ thành công" });
   };
 
-  const handleToggleFavorite = () => {};
+  const handleToggleFavorite = () => {
+    if (!userInfo.data.id)
+      return notification.error({
+        message: "Bạn cần đăng nhập để thực hiện tính năng này",
+      });
+    if (isFavorite) {
+      const favoriteData = productDetail.data.favorites.find(
+        (item) => item.userId === userInfo.data.id
+      );
+      if (favoriteData) {
+        dispatch(unFavoriteProductRequest({ id: favoriteData.id }));
+      }
+    } else {
+      dispatch(
+        favoriteProductRequest({
+          userId: userInfo.data.id,
+          productId: productDetail.data.id,
+        })
+      );
+    }
+  };
 
   const handleReviewProduct = (values) => {
     dispatch(
@@ -205,17 +239,14 @@ const ProductDetailPage = () => {
               <Button
                 size="large"
                 type="text"
+                danger={isFavorite}
                 icon={
-                  <HeartOutlined style={{ fontSize: 24, color: "#414141" }} />
+                  isFavorite ? (
+                    <HeartFilled style={{ fontSize: 24 }} />
+                  ) : (
+                    <HeartOutlined style={{ fontSize: 24, color: "#414141" }} />
+                  )
                 }
-                // danger={isFavorite}
-                // icon={
-                //   isFavorite ? (
-                //     <HeartFilled style={{ fontSize: 24 }} />
-                //   ) : (
-                //     <HeartOutlined style={{ fontSize: 24, color: "#414141" }} />
-                //   )
-                // }
                 onClick={() => handleToggleFavorite()}
               ></Button>
               <p>{productDetail.data?.favorites?.length || 0} Lượt thích</p>
